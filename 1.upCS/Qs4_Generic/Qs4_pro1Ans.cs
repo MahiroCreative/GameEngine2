@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Qs4_Generic
 {
-    internal class Qs4_pro1Ans
+    internal class Qs4_pro1
     {
         static void Main(string[] args)
         {
@@ -46,19 +46,17 @@ namespace Qs4_Generic
 
     /*UnityのGetComponentの文法的再現*/
     //厳密な再現ではなく、文法的な再現を行う。
-    //多重継承せずに、複数のクラスを一つのクラスに持たせる。
-    //イテレータは今回は使わない。
     class GameObject
     {
 
-        //Objectは全てのクラスの親クラス
         List<Object> list = new List<Object>();
         string objName = string.Empty;
 
         public void AddComponent<T>() where T : new()
         {
             T obj = new T();
-            list.Add(obj);        }
+            list.Add(obj);
+        }
 
         public T GetComoponent<T>()
         {
@@ -67,10 +65,9 @@ namespace Qs4_Generic
             //リストから取得
             foreach (var item in list)
             {
-                //型がTと同じなら操作
-                if (item.GetType() == typeof(T))
+                if(item.GetType() == typeof(T))
                 {
-                    //実装
+                    obj = (T)item;
                 }
             }
             return obj;
@@ -78,12 +75,26 @@ namespace Qs4_Generic
 
         public void DelComponent<T>()
         {
-            //実装
+            T obj = default(T);
+
+            //リストから取得
+            foreach(var item in list)
+            {
+                if (item.GetType() == typeof(T))
+                {
+                    obj = (T)item;
+                }
+            }
+
+            list.Remove(obj);
         }
 
         public void ShowComponents()
         {
-           //実装(.ToStringで型名が出ます。)
+            foreach (var item in list)
+            {
+                Console.WriteLine(item.ToString());
+            }
         }
     }
 
@@ -91,14 +102,23 @@ namespace Qs4_Generic
     //コンポーネント
     class Text
     {
-        //実装
+        public void ShowComponentName()
+        {
+            Console.WriteLine("Textです。");
+        }
     }
     class UI
     {
-        //実装
+        public void ShowComponentName()
+        {
+            Console.WriteLine("UIです。");
+        }
     }
     class Pos
     {
-        //実装
+        public void ShowComponentName()
+        {
+            Console.WriteLine("Posです。");
+        }
     }
 }
