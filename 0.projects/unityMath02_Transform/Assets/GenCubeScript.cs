@@ -5,8 +5,8 @@ using UnityEngine;
 public class GenCubeScript : MonoBehaviour {
     public GameObject cube;
     private int nCount = 0;
-    private const int nObjCount = 11;
-    private const float fInterval = 1.0f;
+    private const int nObjCount = 3;
+    private const float fInterval = 4.0f;
     public Renderer rend;
 
     // Use this for initialization
