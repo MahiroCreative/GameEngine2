@@ -52,6 +52,8 @@ public class Transform5_3 : MonoBehaviour {
 
         // クォータニオン→行列変換
         matTransform = Matrix4x4.identity;                          // 単位行列
+
+        //行列でのクオータニオン回転
         matTransform.m00 = 1.0f - 2.0f * (qRot.y * qRot.y + qRot.z * qRot.z);
         matTransform.m01 = 2.0f * (qRot.x * qRot.y - qRot.w * qRot.z);
         matTransform.m02 = 2.0f * (qRot.x * qRot.z + qRot.w * qRot.y);
@@ -61,7 +63,9 @@ public class Transform5_3 : MonoBehaviour {
         matTransform.m20 = 2.0f * (qRot.x * qRot.z - qRot.w * qRot.y);
         matTransform.m21 = 2.0f * (qRot.y * qRot.z + qRot.w * qRot.x);
         matTransform.m22 = 1.0f - 2.0f * (qRot.x * qRot.x + qRot.y * qRot.y);
+
         transform.position = matTransform * transform.position;     // 変換
+
         transform.rotation = qRot * transform.rotation;             // 回転
         rend.material.color = colorCube;
     }
