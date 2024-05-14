@@ -1,0 +1,20 @@
+﻿  Application.cpp
+  Camera.cpp
+  ClearScene.cpp
+  GameManager.cpp
+  GameOverScene.cpp
+  GamePlayingScene.cpp
+  Main.cpp
+C:\Users\teacherM\Desktop\Takasaki3DColliderSphere\Main.cpp(68,16): warning C4244: '初期化中': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\teacherM\Desktop\Takasaki3DColliderSphere\Main.cpp(73,61): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\teacherM\Desktop\Takasaki3DColliderSphere\Main.cpp(73,28): warning C4244: '引数': 'int' から 'float' への変換です。データが失われる可能性があります。
+C:\Users\teacherM\Desktop\Takasaki3DColliderSphere\Main.cpp(74,61): warning C4244: '引数': 'float' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\teacherM\Desktop\Takasaki3DColliderSphere\Main.cpp(74,28): warning C4244: '引数': 'int' から 'float' への変換です。データが失われる可能性があります。
+  Pad.cpp
+  Scene.cpp
+  SceneManager.cpp
+  TitleScene.cpp
+C:\Users\teacherM\Desktop\Takasaki3DColliderSphere\TitleScene.cpp(99,24): warning C4244: '引数': 'int' から 'float' への変換です。データが失われる可能性があります。
+  WorldTimer.cpp
+  コードを生成中...
+  Takasaki3DColliderSphere.vcxproj -> C:\Users\teacherM\Desktop\Takasaki3DColliderSphere\x64\Debug\Takasaki3DColliderSphere.exe
