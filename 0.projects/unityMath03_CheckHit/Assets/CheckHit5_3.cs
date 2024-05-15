@@ -67,11 +67,19 @@ public class CheckHit5_3 : MonoBehaviour {
         v3Vec2 = new Vector3(5.0f * Mathf.Sin(Time.time * 2.0f * Mathf.PI / 12.0f),
                              0.8f * Mathf.Sin(Time.time * 2.0f * Mathf.PI / 7.0f) + 0.7f,
                              fFloorSize / 2.0f);
+
         // 基底ベクトル計算
         float bx = transform.position.x + Input.GetAxis("Horizontal") * fVelocity;
         float bz = transform.position.z + Input.GetAxis("Vertical") * fVelocity;
+
+        //外積の計算
+        //外積求めたそれぞれの成分が、面の方程式の係数になる。
         Vector3 v3Normal = Vector3.Cross(v3Vec1, v3Vec2);
+
+        //方程式を解いて、y座標を出す式にする。
         float by = (-v3Normal.x * bx - v3Normal.z * bz) / v3Normal.y + 0.5f;
+
+        //求めた値を入れる
         transform.position = new Vector3(bx, by, bz);
     }
 }

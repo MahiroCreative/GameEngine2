@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CheckHit5_2 : MonoBehaviour {
+public class CheckHit5_2 : MonoBehaviour
+{
     private Material material;
     private Mesh polygon;
     private const float fFloorSize = 10.0f;
@@ -61,19 +62,26 @@ public class CheckHit5_2 : MonoBehaviour {
     void FixedUpdate()
     {
         // 地面の傾斜変更
-        v3Vec1 = new Vector3(fFloorSize / 2.0f,
-                             2.0f * Mathf.Sin(Time.time * 2.0f * Mathf.PI / 5.0f),
-                             3.0f * Mathf.Sin(Time.time * 2.0f * Mathf.PI / 10.0f));
-        v3Vec2 = new Vector3(5.0f * Mathf.Sin(Time.time * 2.0f * Mathf.PI / 12.0f),
-                             0.8f * Mathf.Sin(Time.time * 2.0f * Mathf.PI / 7.0f) + 0.7f,
-                             fFloorSize / 2.0f);
-        // 基底ベクトル計算
+        v3Vec1 = new Vector3(fFloorSize / 2.0f,2.0f * Mathf.Sin(Time.time * 2.0f * Mathf.PI / 5.0f),3.0f * Mathf.Sin(Time.time * 2.0f * Mathf.PI / 10.0f));
+        v3Vec2 = new Vector3(5.0f * Mathf.Sin(Time.time * 2.0f * Mathf.PI / 12.0f),0.8f * Mathf.Sin(Time.time * 2.0f * Mathf.PI / 7.0f) + 0.7f,fFloorSize / 2.0f);
+
+
+        /*乗ってる自分自身の座標の計算*/
+        //単純な移動距離(基底ベクトル計算)
         float bx = transform.position.x + Input.GetAxis("Horizontal") * fVelocity;
         float bz = transform.position.z + Input.GetAxis("Vertical") * fVelocity;
+
+        /*計算*/
+        //行列の計算により求める傾きの影響度の共通の分母
         float fDelta = v3Vec1.x * v3Vec2.z - v3Vec1.z * v3Vec2.x;
+        //行列の計算により求める傾きの影響度
         float fAlpha = ( v3Vec2.z * bx - v3Vec2.x * bz) / fDelta;
         float fBeta  = (-v3Vec1.z * bx + v3Vec1.x * bz) / fDelta;
+
+        /*傾きに沿ったy座標の計算*/
         float by = fAlpha * v3Vec1.y + fBeta * v3Vec2.y + 0.5f;
+
+        //代入
         transform.position = new Vector3(bx, by, bz);
     }
 }
