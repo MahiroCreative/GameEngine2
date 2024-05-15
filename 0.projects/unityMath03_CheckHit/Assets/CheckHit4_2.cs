@@ -2,12 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CheckHit4_2 : MonoBehaviour {
+public class CheckHit4_2 : MonoBehaviour
+{
+    //変数作成
     public Renderer rend;
     public Color colorNoHit = Color.cyan;
     public Color colorHit = Color.red;
     GameObject target;
     private const float fVelocity = 0.1f;
+    //当たり判定用の変数
+    MakePolygon TargetPoly;
+    Vector3 v3TriVec0, v3TriVec1, v3TriVec2;
+    Vector3 v3HitVec0, v3HitVec1, v3HitVec2;
+    float fCross0, fCross1, fCross2;
+    float fDot;
+    bool bHit;
 
     // Use this for initialization
     void Start()
@@ -20,25 +29,16 @@ public class CheckHit4_2 : MonoBehaviour {
     // Update is called once per frame
     void FixedUpdate()
     {
-        transform.position = new Vector3(transform.position.x + Input.GetAxis("Horizontal") * fVelocity,
-                                         transform.position.y,
-                                         transform.position.z + Input.GetAxis("Vertical") * fVelocity);
-        MakePolygon TargetPoly;
-        Vector3 v3TriVec0, v3TriVec1, v3TriVec2;
-        Vector3 v3HitVec0, v3HitVec1, v3HitVec2;
-        float fCross0, fCross1, fCross2;
-        float fDot;
-        bool bHit;
-        TargetPoly = target.GetComponent<MakePolygon>();
+        /*移動処理*/
+        transform.position = new Vector3(transform.position.x + Input.GetAxis("Horizontal") * fVelocity,transform.position.y,transform.position.z + Input.GetAxis("Vertical") * fVelocity);
 
+        /*三角形との当たり判定*/
+        //スクリプト取得
+        TargetPoly = target.GetComponent<MakePolygon>();
         // 三角形サイクルベクトル
         v3TriVec0 = TargetPoly.positions[1] - TargetPoly.positions[0];
         v3TriVec1 = TargetPoly.positions[2] - TargetPoly.positions[1];
         v3TriVec2 = TargetPoly.positions[0] - TargetPoly.positions[2];
-        // サイクルベクトル単位化
-        v3TriVec0.Normalize();
-        v3TriVec1.Normalize();
-        v3TriVec2.Normalize();
         // 三角形頂点からターゲットへのベクトル
         v3HitVec0 = transform.position - TargetPoly.positions[0];
         v3HitVec1 = transform.position - TargetPoly.positions[1];
@@ -48,6 +48,7 @@ public class CheckHit4_2 : MonoBehaviour {
         fCross1 = v3TriVec1.z * v3HitVec1.x - v3TriVec1.x * v3HitVec1.z;
         fCross2 = v3TriVec2.z * v3HitVec2.x - v3TriVec2.x * v3HitVec2.z;
         bHit = false;
+        //当たり判定
         if (fCross0 >= 0.0f)
         {
             if ((fCross1 >= 0.0f) && (fCross2 >= 0.0f))
@@ -63,6 +64,15 @@ public class CheckHit4_2 : MonoBehaviour {
             }
         }
 
+
+
+        /*進入禁止処理*/
+        // サイクルベクトル単位化
+        v3TriVec0.Normalize();
+        v3TriVec1.Normalize();
+        v3TriVec2.Normalize();
+
+        //
         if (bHit)
         {
             // プレイヤー位置制御
