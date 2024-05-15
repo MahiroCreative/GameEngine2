@@ -72,39 +72,40 @@ public class CheckHit4_2 : MonoBehaviour
         v3TriVec1.Normalize();
         v3TriVec2.Normalize();
 
-        //
+        /*どの辺に一番近い位置で当たっているかを判定*/
+        //外積の大きさが一番小さい位置が一番近い。
         if (bHit)
         {
-            // プレイヤー位置制御
-            if ((Mathf.Abs(fCross0) <= Mathf.Abs(fCross1)) &&
-                 (Mathf.Abs(fCross0) <= Mathf.Abs(fCross2)))
+            //辺0に一番近い。
+            //片方を単位ベクトルかしておくと、外積の大きさは|b|sinΘになり、
+            //これは、点と辺の距離に等しいので判定できる。
+            if ((Mathf.Abs(fCross0) <= Mathf.Abs(fCross1)) &&(Mathf.Abs(fCross0) <= Mathf.Abs(fCross2)))
             {
-                // 辺０に一番近い
-                fDot = Vector3.Dot(v3TriVec0, v3HitVec0);
-                transform.position = new Vector3(v3TriVec0.x * fDot + TargetPoly.positions[0].x,
-                                                 transform.position.y,
-                                                 v3TriVec0.z * fDot + TargetPoly.positions[0].z);
+                /*当たった辺まで移動させる*/
+                //片方が単位ベクトルなので、内積は|b|cosΘ
+                //|b|cosΘは、判定点から辺へ垂線を下した位置に等しい。
+                fDot = Vector3.Dot(v3TriVec0, v3HitVec0);//長さを出す
+                //当たった軸の原点から当たった点までのベクトルを作成して、その位置に戻す。
+                transform.position = new Vector3(v3TriVec0.x * fDot + TargetPoly.positions[0].x,transform.position.y,v3TriVec0.z * fDot + TargetPoly.positions[0].z);
             }
-            else
+            else//辺1or辺2に近い
             {
+                // 辺１に一番近い
                 if (Mathf.Abs(fCross1) <= Mathf.Abs(fCross2))
                 {
-                    // 辺１に一番近い
+                    
                     fDot = Vector3.Dot(v3TriVec1, v3HitVec1);
-                    transform.position = new Vector3(v3TriVec1.x * fDot + TargetPoly.positions[1].x,
-                                                     transform.position.y,
-                                                     v3TriVec1.z * fDot + TargetPoly.positions[1].z);
+                    transform.position = new Vector3(v3TriVec1.x * fDot + TargetPoly.positions[1].x,transform.position.y,v3TriVec1.z * fDot + TargetPoly.positions[1].z);
                 }
-                else
+                else// 辺２に一番近い
                 {
-                    // 辺２に一番近い
                     fDot = Vector3.Dot(v3TriVec2, v3HitVec2);
-                    transform.position = new Vector3(v3TriVec2.x * fDot + TargetPoly.positions[2].x,
-                                                     transform.position.y,
-                                                     v3TriVec2.z * fDot + TargetPoly.positions[2].z);
+                    transform.position = new Vector3(v3TriVec2.x * fDot + TargetPoly.positions[2].x,transform.position.y,v3TriVec2.z * fDot + TargetPoly.positions[2].z);
                 }
             }
         }
+
+        /*色替え*/
         if (bHit)
         {
             rend.material.color = colorHit;
