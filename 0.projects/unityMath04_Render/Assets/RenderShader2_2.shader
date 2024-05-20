@@ -48,7 +48,7 @@
 			{
 				// make the color
 				fixed4 col = fixed4(0.0, 0.0, 0.0, 1.0);
-				const float r1 = 0.2, r2 = 0.5;
+				const float r1 = 0.2, r2 = 0.4;
 				float rad = distance(i.uv, float2(0.5, 0.5));
 				if (rad > r1) {
 					col.gb = 1.0 - (rad - r1) / (r2 - r1);

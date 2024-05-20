@@ -48,15 +48,32 @@
 			{
 				// make the color
 				fixed4 col = fixed4(0.0, 0.0, 1.0, 1.0);
+				//球の半径
 				const float r = 0.4;
+				//s_lightの作成(光源の方向を向いた単位ベクトル)
 				const float3 s_light = float3(-1.0 / 1.732, 1.0 / 1.732, 1.0 / 1.732);
+				//cpの作成(レンダリングの中心)
 				float3 cp = float3(i.uv.x - 0.5, i.uv.y - 0.5, 0.0);
+				//zsqの作成(z^2)
+				//x^2+y^2+z^2=r^2　から求めて以下になる。
 				float zsq = r * r - cp.x * cp.x - cp.y * cp.y;
+				//レンダリング条件
 				if (zsq > 0.0) {
+					//正面から見た場合のみを考えるので、
+					//ｚが＋のときだけ考える。
+					//なので、条件分けせず、普通にルートをとる
 					cp.z = sqrt(zsq);
+					//normは、円の中心から描画したい点までのベクトル(cp)を単位ベクトルにしたもの
+					//つまり、描画したい点の法線ベクトル
 					float3 norm = cp / r;
+					//明るさの作成
+					//描画したい点の法線ベクトルと、光源へのベクトルの内積(dot(norm,s_light))
+					//結果が0.0よりも小さくならないようにmaxしている。
+					//(maxは二つの値を見て、大きいほうをとる関数)
 					float d_bright = max(dot(norm, s_light), 0.0);
-					col.rgb = 0.3 + 0.7 * d_bright;
+					//レンダリング
+					//ランバート反射式で計算
+					col.rgb = 0.3 + 0.7 * pow(d_bright,2.0);
 				}
 				// apply fog
 				UNITY_APPLY_FOG(i.fogCoord, col);

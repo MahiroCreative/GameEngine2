@@ -48,7 +48,9 @@
 			{
 				// make the color
 				fixed4 col = fixed4(0.0, 0.0, 1.0, 1.0);
-				col.rg = abs((frac((i.uv.x + i.uv.y) * 2.0 - (_Time.w * 0.3)) * 2.0) - 1.0);
+				float x = sin(i.uv.x * 3);
+				float y = cos(i.uv.y * 3);
+				col.rg = abs((frac((x + y) * 2.0 - (_Time.w * 0.3)) * 2.0) - 1.0);
 				// apply fog
 				UNITY_APPLY_FOG(i.fogCoord, col);
 				return col;

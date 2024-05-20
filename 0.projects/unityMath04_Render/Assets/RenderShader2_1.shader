@@ -48,8 +48,9 @@
 			{
 				// make the color
 				fixed4 col = fixed4(0.0, 0.0, 1.0, 1.0);
-				float2 cp = float2(i.uv.x - 0.5, i.uv.y - 0.5);		// 相対座標
-				col.rg = frac((sqrt(cp.x * cp.x + cp.y * cp.y) * 4.0) - (_Time.w * 0.3));
+				// 相対座標
+				float2 cp = float2(i.uv.x - 0.5, i.uv.y - 0.5);
+				col.rg = frac((sqrt(cp.x * cp.x + cp.y * cp.y) * 2.0) - (_Time.w * 0.3));
 				// apply fog
 				UNITY_APPLY_FOG(i.fogCoord, col);
 				return col;
