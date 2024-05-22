@@ -37,8 +37,11 @@
 			
 			v2f vert (appdata v)
 			{
+				//バーテックスシェーダの取得
 				v2f o;
 				o.vertex = UnityObjectToClipPos(v.vertex);
+
+
 				const float fTime_T = 10.0;
 				float fAngle = 2.0 * 3.1416 * _Time.w / fTime_T;
 				float2 uv_c = v.uv - float2(0.5, 0.5);
