@@ -1,0 +1,3 @@
+C:\Users\fko2347025\Desktop\MyTemplate\Collision\TriangleCol\x64\Debug\TriangleCol.exe
+C:\Users\fko2347025\Desktop\MyTemplate\TriangleCol\x64\Debug\TriangleCol.exe
+C:\Users\teacherM\Desktop\廣本勝志_三角形当たり判定\TriangleCol\x64\Debug\TriangleCol.exe
