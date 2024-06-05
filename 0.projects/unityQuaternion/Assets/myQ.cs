@@ -12,7 +12,7 @@ public class myQ : MonoBehaviour
     void Start()
     {
         //‰ñ“]Šp“x(Šp‘¬“x‚Å‚È‚¢‚±‚Æ‚É’ˆÓ)
-        _angle = 2 * Mathf.PI * 0.002f;//0.36“x
+        _angle = 2 * Mathf.PI * 0.002f;//0.72“x
 
         //‰ñ“]²‚Ìì¬
         _axis = new Vector3(-1, 1, 1);

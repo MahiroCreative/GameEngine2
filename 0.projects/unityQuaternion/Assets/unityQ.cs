@@ -10,7 +10,7 @@ public class unityQ : MonoBehaviour
 
     private void Start()
     {
-        //Šp‘¬“x
+        //Šp‘¬“x[/s]
         _angle = 2 * Mathf.PI * 0.1f;//36“x
 
         //‰ñ“]²‚Ìì¬
