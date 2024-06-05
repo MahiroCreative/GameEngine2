@@ -62,7 +62,7 @@ public struct MyQuaternion
 
         /*クオータニオンの掛け算*/
         //公式通りです。
-        tempQ.w = lQ.w * rQ.w - lQ.x * rQ.x - lQ.y * lQ.y - lQ.z * rQ.z;//実部
+        tempQ.w = lQ.w * rQ.w - lQ.x * rQ.x - lQ.y * rQ.y - lQ.z * rQ.z;//実部
         tempQ.x = lQ.w * rQ.x + lQ.x * rQ.w + lQ.y * rQ.z - lQ.z * rQ.y;//虚部x
         tempQ.y = lQ.w * rQ.y + lQ.y * rQ.w + lQ.z * rQ.x - lQ.x * rQ.z;//虚部y
         tempQ.z = lQ.w * rQ.z + lQ.z * rQ.w + lQ.x * rQ.y - lQ.y * rQ.x;//虚部z
