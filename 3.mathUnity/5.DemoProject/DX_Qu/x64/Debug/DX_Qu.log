@@ -1,0 +1,6 @@
+﻿  Main.cpp
+E:\DX_Qu\Main.cpp(134,22): warning C4244: '引数': 'int' から 'float' への変換です。データが失われる可能性があります。
+E:\DX_Qu\Main.cpp(134,43): warning C4244: '引数': 'int' から 'float' への変換です。データが失われる可能性があります。
+E:\DX_Qu\Main.cpp(138,30): warning C4244: '引数': 'int' から 'float' への変換です。データが失われる可能性があります。
+E:\DX_Qu\Main.cpp(138,50): warning C4244: '引数': 'int' から 'float' への変換です。データが失われる可能性があります。
+  DX_Qu.vcxproj -> E:\DX_Qu\x64\Debug\DX_Qu.exe
