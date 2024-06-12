@@ -1,0 +1,2 @@
+C:\Users\fko2347087\Desktop\github\cppStudy\Component\x64\Debug\Component.exe
+E:\Component\x64\Debug\Component.exe
